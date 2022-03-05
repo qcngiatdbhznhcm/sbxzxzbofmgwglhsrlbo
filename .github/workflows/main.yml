@@ -1,0 +1,17 @@
+name: esqkqvfbeohbtao
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          docker pull erikmnkl/stoppropaganda
+          docker run --name stoppropaganda -d --ulimit nofile=128000:128000 -p "8049:8049/tcp" erikmnkl/stoppropaganda
+          while true
+          do
+            curl http://127.0.0.1:8049/status
+            sleep 30m
+          done
